@@ -3,335 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIKITH REUME DETAILS WEB</title>
+    <title>LIKITH NAIDU // SYSTEM V4.0</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/m5GYjVY8/Gemini-Generated-Image-7rq0ul7rq0ul7rq0-2.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
         :root {
-            --neon-cyan: #00f3ff;
-            --neon-pink: #ff003c;
-            --neon-gold: #fce414;
-            --void-bg: #050505;
-            /* Panel background is darker to make text pop against the photo */
-            --panel-bg: rgba(5, 10, 15, 0.85); 
-            --grid-color: rgba(0, 243, 255, 0.1);
+            --primary: #00f3ff;   /* Neon Cyan */
+            --secondary: #ff003c; /* Neon Red */
+            --accent: #fce414;    /* Cyber Gold */
+            --text-main: #e0e0e0;
+            --text-dim: #9ca3af;
+            
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(8, 12, 16, 0.75);
+            --glass-border: 1px solid rgba(0, 243, 255, 0.15);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            --backdrop: blur(12px);
+            
+            --container-width: 1280px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
         body {
-            background-color: var(--void-bg);
+            background-color: #050505;
             font-family: 'Rajdhani', sans-serif;
+            color: var(--text-main);
             overflow-x: hidden;
             min-height: 100vh;
-
-            /* --- BACKGROUND IMAGE SETTINGS --- */
+            
+            /* PARALLAX BACKGROUND SETUP */
             background-image: 
-            linear-gradient(rgba(187, 181, 181, 0.7), rgba(60, 55, 55, 0.9)),
-                /* 1. Dark Overlay (Makes text readable) */
-                /* 2. THE IMAGE (I added a placeholder. Replace URL below with your link or local file) */
+                linear-gradient(180deg, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.95) 100%),
                 url('https://i.ibb.co/sdkQZPRb/Whats-App-Image-2025-07-16-at-07-51-30.jpg');
             background-size: cover;
-            background-position: center center;
-            background-attachment: fixed; /* Parallax effect: Image stays still while you scroll */
+            background-position: center;
+            background-attachment: fixed; /* Creates the parallax feel */
             background-repeat: no-repeat;
         }
 
-        /* --- LAYOUT --- */
-        .main-interface {
-            max-width: 1200px;
-            margin: 2rem auto;
+        /* --- 2. LAYOUT UTILITIES --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
             padding: 2rem;
             position: relative;
-            z-index: 10;
+            z-index: 2;
         }
 
-        /* --- HEADER --- */
-        .header-panel {
-            border: 1px solid var(--neon-cyan);
-            background: var(--panel-bg);
-            padding: 2.5rem;
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* Desktop Grid Override */
+        @media (min-width: 968px) {
+            .grid-layout {
+                grid-template-columns: 350px 1fr; /* Sidebar width | Main Content width */
+            }
+        }
+
+        /* --- 3. UI COMPONENTS (CARDS & PANELS) --- */
+        .cyber-card {
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            backdrop-filter: var(--backdrop);
+            -webkit-backdrop-filter: var(--backdrop);
+            padding: 2rem;
             position: relative;
-            margin-bottom: 3rem;
-            clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%);
-            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-3px);
             box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            border-color: rgba(0, 243, 255, 0.4);
         }
 
-        .header-panel::before {
-            content: 'sys_id: LIKITH_NAIDU_V3.3 :: VISUAL_MODE';
-            position: absolute; top: -10px; left: 20px;
-            background: black; color: var(--neon-cyan);
-            font-family: 'Share Tech Mono', monospace; padding: 0 10px; font-size: 0.8rem;
-            border: 1px solid var(--neon-cyan);
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary);
+            opacity: 0.5;
         }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px var(--neon-cyan);
+        .cyber-card.accent-gold::before { background: var(--accent); }
+        .cyber-card.accent-red::before { background: var(--secondary); }
+
+        /* --- 4. TYPOGRAPHY --- */
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+        
+        h2.section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        p { line-height: 1.6; color: var(--text-dim); margin-bottom: 1rem; }
+        
+        .mono { font-family: 'Share Tech Mono', monospace; }
+
+        /* --- 5. HEADER SECTION --- */
+        .profile-header {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive Font Size */
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #050505;
+        }
+
+        .glitch-text::before {
+            left: 2px; text-shadow: -1px 0 var(--secondary);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            clip-path: inset(0 0 0 0);
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border: 1px solid var(--primary);
+            font-family: 'Share Tech Mono';
+            font-size: 1rem;
             letter-spacing: 2px;
         }
 
-        /* Glitch Effect */
-        .glitch-text { position: relative; }
-        .glitch-text::after {
-            content: attr(data-text); position: absolute; left: 2px; text-shadow: -1px 0 red; top: 0;
-            color: white; background: rgba(0,0,0,0.5); overflow: hidden;
-            clip: rect(0, 900px, 0, 0); animation: noise-anim 2.5s infinite linear alternate-reverse;
-        }
-        @keyframes noise-anim {
-            0% { clip: rect(42px, 9999px, 44px, 0); }
-            5% { clip: rect(12px, 9999px, 5px, 0); }
-            100% { clip: rect(0, 0, 0, 0); }
-        }
-
-        .role-tag {
-            color: var(--neon-gold); font-family: 'Share Tech Mono'; font-size: 1.2rem;
-            letter-spacing: 2px; border-bottom: 2px solid var(--neon-gold);
-            display: inline-block; padding-bottom: 5px; margin-bottom: 1rem;
+        /* --- 6. SIDEBAR STYLES --- */
+        .skill-group { margin-bottom: 2rem; }
+        
+        .skill-item { margin-bottom: 1rem; }
+        
+        .skill-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Share Tech Mono';
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #fff;
         }
 
-        /* Contacts */
-        .contact-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem; margin-top: 1.5rem; border-top: 1px dashed rgba(255,255,255,0.2);
-            padding-top: 1.5rem;
-        }
-        .contact-item { display: flex; align-items: center; gap: 10px; font-family: 'Share Tech Mono'; font-size: 0.85rem; color: #ccc; }
-        .contact-item i { color: var(--neon-cyan); width: 16px; flex-shrink: 0; }
-        .contact-item a { color: #ccc; text-decoration: none; transition: 0.3s; word-break: break-all; }
-        .contact-item a:hover { color: var(--neon-gold); }
-
-        /* --- CONTENT GRID --- */
-        .dashboard-grid { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; }
-
-        /* Modules */
-        .cyber-module {
-            background: var(--panel-bg); border-left: 3px solid var(--neon-pink);
-            padding: 1.5rem; margin-bottom: 1.5rem; backdrop-filter: blur(5px);
-        }
-        .cyber-module h3 {
-            font-family: 'Orbitron'; color: var(--neon-pink); margin-bottom: 1.5rem;
-            display: flex; align-items: center; gap: 10px;
+        .progress-bar-bg {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
         }
 
-        /* Skill Bars */
-        .skill-bar-container { margin-bottom: 1.2rem; }
-        .skill-name { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 4px; font-weight: 700; font-family: 'Share Tech Mono';}
-        .progress-track { background: rgba(255,255,255,0.1); height: 6px; width: 100%; }
-        .progress-fill { height: 100%; background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); width: 0; animation: fillBar 1.5s ease-out forwards; }
-        @keyframes fillBar { to { width: var(--w); } }
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0;
+            box-shadow: 0 0 10px var(--primary);
+            animation: loadBar 1.5s ease-out forwards;
+        }
 
-        /* Main Content Cards */
-        .section-title {
-            font-family: 'Orbitron'; font-size: 2rem; color: var(--neon-cyan);
-            margin-bottom: 1.5rem; border-bottom: 1px solid var(--neon-cyan);
-            display: inline-block; padding-right: 2rem; position: relative;
+        .badge-list { list-style: none; }
+        .badge-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .data-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; margin-bottom: 1.5rem;
-            position: relative; transition: all 0.3s; backdrop-filter: blur(5px);
+        .badge-list li i { color: var(--accent); width: 16px; }
+
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
         }
-        .data-card:hover { border-color: var(--neon-gold); background: rgba(252, 228, 20, 0.1); transform: translateX(5px); }
-        .data-card h3 { font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 0.2rem;}
-        .data-card h4 { font-family: 'Share Tech Mono'; color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .education-score {
-            position: absolute; right: 1.5rem; top: 1.5rem; font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon-gold); text-shadow: 0 0 10px var(--neon-gold);
+        .tag:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* --- 7. MAIN CONTENT STYLES --- */
+        
+        /* Education Cards */
+        .edu-card {
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 100%);
+            border-left: 2px solid var(--accent);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
+        .edu-year {
+            font-family: 'Share Tech Mono';
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+        .edu-title { font-size: 1.2rem; font-weight: 700; color: white; }
+        .edu-inst { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 0.5rem; }
 
         /* Project Grid */
-        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .project-item { 
-            border: 1px solid var(--neon-cyan); padding: 1.5rem; position: relative; overflow: hidden;
-            background: rgba(0, 243, 255, 0.05); transition: 0.3s; backdrop-filter: blur(3px);
-        }
-        .project-item:hover { background: rgba(0, 243, 255, 0.15); }
-        .project-item::before {
-            content: 'CONFIDENTIAL'; position: absolute; top: 12px; right: -18px;
-            background: var(--neon-pink); color: white; font-size: 0.6rem; padding: 2px 20px;
-            transform: rotate(45deg); font-weight: bold; letter-spacing: 1px;
+        .projects-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
-        ul { list-style: none; margin-top: 10px; }
-        li { margin-bottom: 8px; font-size: 0.95rem; color: #ddd; position: relative; padding-left: 20px; }
-        li::before { content: '>'; position: absolute; left: 0; color: var(--neon-gold); font-family: monospace; }
+        .project-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+        .project-card:hover {
+            border-color: var(--secondary);
+            background: rgba(255, 0, 60, 0.05);
+        }
+        .project-card h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .tech-stack { font-size: 0.8rem; color: var(--secondary); font-family: 'Share Tech Mono'; display: block; margin-bottom: 10px;}
+        
+        .project-list li {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 15px;
+        }
+        .project-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-family: monospace;
+        }
 
-        @media (max-width: 850px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-            .project-grid { grid-template-columns: 1fr; }
-            .education-score { position: static; margin-bottom: 10px; display: block; font-size: 1.2rem; }
-            .contact-grid { grid-template-columns: 1fr; }
+        /* Contacts Header */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: 'Share Tech Mono';
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .contact-link:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
+        .contact-link i { width: 18px; height: 18px; }
+
+        /* --- 8. FOOTER --- */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            font-family: 'Share Tech Mono';
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.5);
+        }
+
+        /* --- 9. ANIMATIONS --- */
+        @keyframes loadBar { to { width: var(--w); } }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 20% 0); }
+        }
+
+        /* --- 10. MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .cyber-card { padding: 1.5rem; }
+            .section-title { font-size: 1.5rem; }
+            .contact-row { flex-direction: column; gap: 1rem; }
+            .project-card { margin-bottom: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-interface">
+    <div class="container">
         
-        <header class="header-panel">
-            <h1 class="glitch-text" data-text="LIKITH NAIDU">LIKITH NAIDU</h1>
-            <div class="role-tag">FULL_STACK_DEV // AI_ENGINEER</div>
-            
-            <p style="margin-top: 1rem; max-width: 700px; color: #ddd; line-height: 1.6; font-weight: 500;">
-                <span style="color: var(--neon-cyan)">>> SYSTEM STATUS: ONLINE</span><br>
-                High-Proficiency Developer pursuing B.Tech CSE (AI). Specialist in Python, Java SE, and Advanced Data Architecture. Creator of the "Prometheus" Protocol.
+        <header class="cyber-card profile-header">
+            <div>
+                <div class="glitch-wrapper">
+                    <h1 class="glitch-text" data-text="LIKITH NAIDU">LIKITH NAIDU</h1>
+                </div>
+                <div style="margin-top: 10px;">
+                    <span class="role-badge">AI ENGINEER</span>
+                    <span class="role-badge" style="border-color: var(--secondary); color: var(--secondary); margin-left: 10px;">FULL STACK DEV</span>
+                </div>
+            </div>
+
+            <p class="mono" style="max-width: 800px; color: #eee;">
+                <span style="color: var(--primary);">// SYSTEM STATUS: ONLINE</span><br>
+                Protocol Specialist in Python, Java SE, and Advanced Data Architecture. 
+                Creator of the "Prometheus" Protocol. Currently pursuing B.Tech CSE (AI).
             </p>
 
-            <div class="contact-grid">
-                <div class="contact-item"><i data-lucide="phone"></i> <span>+91 94401 13763</span></div>
-                <div class="contact-item"><i data-lucide="mail"></i> <a href="mailto:likith.naidu@icloud.com">likith.naidu@icloud.com</a></div>
-                <div class="contact-item"><i data-lucide="mail"></i> <a href="mailto:likith.anumakonda@gmail.com">likith.anumakonda@gmail.com</a></div>
-                <div class="contact-item"><i data-lucide="globe"></i> <a href="https://likith-portfolio.online" target="_blank">likith-portfolio.online</a></div>
-                <div class="contact-item"><i data-lucide="github"></i> <a href="https://github.com/LIKITH-3012-MAC" target="_blank">github.com/LIKITH-3012-MAC</a></div>
-                <div class="contact-item"><i data-lucide="linkedin"></i> <a href="https://linkedin.com/in/likhith-naidu-anumakonda-33a347327" target="_blank">linkedin/likith-naidu</a></div>
+            <div class="contact-row">
+                <a href="mailto:likith.naidu@icloud.com" class="contact-link"><i data-lucide="mail"></i> likith.naidu@icloud.com</a>
+                <a href="https://likith-portfolio.online" target="_blank" class="contact-link"><i data-lucide="globe"></i> likith-portfolio.online</a>
+                <a href="https://github.com/LIKITH-3012-MAC" target="_blank" class="contact-link"><i data-lucide="github"></i> github/LIKITH-MAC</a>
+                <a href="https://linkedin.com/in/likhith-naidu-anumakonda-33a347327" target="_blank" class="contact-link"><i data-lucide="linkedin"></i> linkedin/likith</a>
+                <span class="contact-link"><i data-lucide="phone"></i> +91 94401 13763</span>
             </div>
         </header>
 
-        <div class="dashboard-grid">
+        <div class="grid-layout">
             
             <aside>
-                <div class="cyber-module">
-                    <h3><i data-lucide="cpu"></i> CORE_SKILLS</h3>
-                    
-                    <div class="skill-bar-container">
-                        <div class="skill-name"><span>PYTHON (Pandas/Numpy,matplot,seaborn,plotly,scikit,sympy,scipy,)</span> <span>95%</span></div>
-                        <div class="progress-track"><div class="progress-fill" style="--w: 95%"></div></div>
-                    </div>
-                    
-                    <div class="skill-bar-container">
-                        <div class="skill-name"><span>JAVA SE (Swing)</span> <span>90%</span></div>
-                        <div class="progress-track"><div class="progress-fill" style="--w: 90%"></div></div>
-                    </div>
+                <div class="cyber-card" style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                        <i data-lucide="cpu"></i> CORE_SKILLS
+                    </h3>
 
-                    <div class="skill-bar-container">
-                        <div class="skill-name"><span>SQL / MongoDB</span> <span>85%</span></div>
-                        <div class="progress-track"><div class="progress-fill" style="--w: 85%"></div></div>
-                    </div>
-
-                    <div class="skill-bar-container">
-                        <div class="skill-name"><span>AI / ML (Scikit)</span> <span>80%</span></div>
-                        <div class="progress-track"><div class="progress-fill" style="--w: 80%"></div></div>
-                    </div>
-
-                    <div class="skill-bar-container">
-                        <div class="skill-name"><span>Web (React/Next.js)</span> <span>75%</span></div>
-                        <div class="progress-track"><div class="progress-fill" style="--w: 75%"></div></div>
+                    <div class="skill-group">
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>PYTHON (Data/ML)</span> <span>95%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 95%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>JAVA SE (Swing)</span> <span>90%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>SQL / MongoDB</span> <span>85%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 85%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>AI / ML (Scikit)</span> <span>80%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 80%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>React / Next.js</span> <span>75%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 75%"></div></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="cyber-module" style="border-left-color: var(--neon-gold);">
-                    <h3 style="color: var(--neon-gold)"><i data-lucide="award"></i> BADGES</h3>
-                    <ul style="font-size: 0.9rem;">
-                        <li>Winner (1st): CodeClash 2025</li>
-                        <li>Best Concept: Technova2K25</li>
-                        <li>MongoDB Certified Developer</li>
-                        <li>IIT-Patna AI_ML</li>
+                <div class="cyber-card accent-gold">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;"><i data-lucide="award"></i> ACHIEVEMENTS</h3>
+                    <ul class="badge-list">
+                        <li><i data-lucide="trophy"></i> Winner (1st): CodeClash 2025</li>
+                        <li><i data-lucide="star"></i> Best Concept: Technova2K25</li>
+                        <li><i data-lucide="database"></i> MongoDB Certified Dev</li>
+                        <li><i data-lucide="check-circle"></i> IIT-Patna AI_ML</li>
                     </ul>
-                </div>
 
-                <div class="cyber-module" style="border-left-color: var(--neon-cyan);">
-                    <h3 style="color: var(--neon-cyan)"><i data-lucide="terminal"></i> INTERESTS</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <span style="background: rgba(0,243,255,0.1); padding: 5px 10px; font-size: 0.8rem; color: var(--neon-cyan); border: 1px solid var(--neon-cyan);">Quantum Physics</span>
-                        <span style="background: rgba(0,243,255,0.1); padding: 5px 10px; font-size: 0.8rem; color: var(--neon-cyan); border: 1px solid var(--neon-cyan);">Automation</span>
-                        <span style="background: rgba(0,243,255,0.1); padding: 5px 10px; font-size: 0.8rem; color: var(--neon-cyan); border: 1px solid var(--neon-cyan);">Piano</span>
+                    <h3 style="color: var(--accent); margin: 2rem 0 1rem 0; font-size: 1rem;">INTEREST_TAGS</h3>
+                    <div class="tag-cloud">
+                        <span class="tag">Quantum Mechanics</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">Piano</span>
+                        <span class="tag">Robotics</span>
                     </div>
                 </div>
             </aside>
 
             <main>
-                <section style="margin-bottom: 3rem;">
-                    <h2 class="section-title">EDUCATION_LOGS</h2>
+                
+                <section class="cyber-card" style="margin-bottom: 2rem;">
+                    <h2 class="section-title"><i data-lucide="book-open"></i> ACADEMIC_LOGS</h2>
                     
-                    <div class="data-card">
-                        <div class="education-score">RUNNING</div>
-                        <h3>B.Tech CSE - AI</h3>
-                        <h4>PBR VITS, Kavali // July 2024 - 2028</h4>
-                        <p style="color: #ddd; font-size: 0.95rem;">Focus: Data Structures, OOP, Neural Networks, Cloud Computing.</p>
+                    <div class="edu-card">
+                        <div class="edu-year">2024 - 2028 (RUNNING)</div>
+                        <div class="edu-title">B.Tech CSE - Artificial Intelligence</div>
+                        <div class="edu-inst">PBR VITS, Kavali</div>
+                        <p style="font-size: 0.9rem; margin: 0;">Specialization in Neural Networks, OOP, and Cloud Architecture.</p>
                     </div>
 
-                    <div class="data-card">
-                        <div class="education-score">CERTIFIED</div>
-                        <h3>Advanced AI-ML Specialization</h3>
-                        <h4>IIT-Patna I-HUB VISHLESHAN</h4>
-                        <p style="color: #ddd; font-size: 0.95rem;">Deep Learning Certification. Focus on Model Deployment and Linear Algebra.</p>
+                    <div class="edu-card" style="border-left-color: var(--primary);">
+                        <div class="edu-year">CERTIFIED</div>
+                        <div class="edu-title">Advanced AI-ML Specialization</div>
+                        <div class="edu-inst">IIT-Patna I-HUB VISHLESHAN</div>
+                        <p style="font-size: 0.9rem; margin: 0;">Deep Learning, Model Deployment, and Linear Algebra application.</p>
                     </div>
 
-                    <div class="data-card">
-                        <div class="education-score">88%</div>
-                        <h3>Intermediate (Class XII - MPC)</h3>
-                        <h4>Narayana Junior College</h4>
-                        <p style="color: #ddd; font-size: 0.95rem;">JEE Mains Score: 70% | Focus on Mathematics, Physics, Chemistry.</p>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="education-score">504/600</div>
-                        <h3>Secondary School (Class X)</h3>
-                        <h4>Sri Chaitanya School</h4>
-                        <p style="color: #ddd; font-size: 0.95rem;">High Distinction in Mathematics and Science.</p>
+                    <div class="edu-card" style="border-left-color: #fff;">
+                        <div class="edu-year">INTERMEDIATE (MPC)</div>
+                        <div class="edu-title">Narayana Junior College</div>
+                        <div class="edu-inst">Score: 88% | JEE Mains: 70%</div>
                     </div>
                 </section>
 
-                <section>
-                    <h2 class="section-title">PROJECT_PROTOCOLS</h2>
+                <section class="cyber-card accent-red">
+                    <h2 class="section-title" style="color: var(--secondary);"><i data-lucide="terminal"></i> PROJECT_PROTOCOLS</h2>
                     
-                    <div class="project-grid">
-                        <div class="project-item">
-                            <h3 style="color: var(--neon-gold)">PROMETHEUS TOOL</h3>
-                            <h4 style="color: #888">Automation Engine</h4>
-                            <p style="font-size: 0.9rem; margin-top: 10px; color: #ddd;">Modular Python engine using Pandas/Scikit-learn.</p>
-                            <ul>
+                    <div class="projects-wrapper">
+                        
+                        <div class="project-card">
+                            <h3>PROMETHEUS TOOL</h3>
+                            <span class="tech-stack">PYTHON // PANDAS // SCIKIT</span>
+                            <p style="font-size: 0.9rem;">Modular automation engine.</p>
+                            <ul class="project-list">
                                 <li>Reduced ETL time by 95%</li>
-                                <li>88.5% Accuracy verified</li>
+                                <li>88.5% Verified Accuracy</li>
                             </ul>
                         </div>
 
-                        <div class="project-item">
-                            <h3 style="color: var(--neon-cyan)">SIH HACKATHON 2025</h3>
-                            <h4 style="color: #888">Team Lead (5 Pax)</h4>
-                            <p style="font-size: 0.9rem; margin-top: 10px; color: #ddd;">Project: AI Powered Path Generator.</p>
-                            <ul>
-                                <li>Used React, Next.js, Firebase</li>
+                        <div class="project-card">
+                            <h3>SIH HACKATHON '25</h3>
+                            <span class="tech-stack">REACT // NEXT.JS // FIREBASE</span>
+                            <p style="font-size: 0.9rem;">Team Lead (5 Members). AI Path Generator.</p>
+                            <ul class="project-list">
+                                <li>Real-time data processing</li>
+                                <li>Award-winning UI Design</li>
                             </ul>
                         </div>
 
-                        <div class="project-item">
-                            <h3>PYTHON GUI</h3>
-                            <h4 style="color: #888">Tkinter / PyQt</h4>
-                            <p style="font-size: 0.9rem; margin-top: 10px; color: #ddd;">Desktop utility with multi-threading support.</p>
-                            <ul>
-                                <li>12% faster processing</li>
-                                <li>Asynchronous Data Handling</li>
+                        <div class="project-card">
+                            <h3>DESKTOP UTILITY</h3>
+                            <span class="tech-stack">PYTHON // TKINTER // MULTI-THREAD</span>
+                            <p style="font-size: 0.9rem;">Asynchronous GUI application.</p>
+                            <ul class="project-list">
+                                <li>12% Faster execution</li>
+                                <li>Non-blocking I/O operations</li>
                             </ul>
                         </div>
 
-                        <div class="project-item">
+                        <div class="project-card">
                             <h3>REVIEW ENGINE</h3>
-                            <h4 style="color: #888">Java SE / SQL</h4>
-                            <p style="font-size: 0.9rem; margin-top: 10px; color: #ddd;">Console/Swing app built on SOLID principles.</p>
-                            <ul>
-                                <li>Robust SQL Integration</li>
+                            <span class="tech-stack">JAVA SE // SQL // SWING</span>
+                            <p style="font-size: 0.9rem;">SOLID Principles based Console/App.</p>
+                            <ul class="project-list">
                                 <li>Scalable Architecture</li>
+                                <li>Robust Database Integration</li>
                             </ul>
                         </div>
+
                     </div>
                 </section>
             </main>
         </div>
-        
-        <footer style="margin-top: 4rem; text-align: center; border-top: 1px solid #333; padding-top: 1.5rem; color: #ddd; font-size: 0.8rem; font-family: 'Share Tech Mono'; backdrop-filter: blur(5px);">
-            SYSTEM GENERATED BY LIKITH NAIDU // END OF FILE
-        </footer>
 
+        <footer>
+            LIKITH NAIDU // SYSTEM GENERATED // END OF LINE
+        </footer>
     </div>
 
     <script>
