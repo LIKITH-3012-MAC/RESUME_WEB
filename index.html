@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIKITH NAIDU | Comprehensive Technical Profile v6.0</title>
+    <title>LIKITH NAIDU RESUME-WEB</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/m5GYjVY8/Gemini-Generated-Image-7rq0ul7rq0ul7rq0-2.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..900;1,300..900&family=Karla:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* --- 1. CORE VARIABLES & RESET (Narrative Profile Theme) --- */
+        /* --- 1. CORE VARIABLES & RESET (Terminal/Code Theme) --- */
         :root {
-            --color-primary: #1e3a8a; /* Deep Navy Blue for Titles */
-            --color-line: #ccc;       /* Light Gray for dividers */
-            --color-text: #333333;
-            --color-dim: #666666;
-            --color-background: #ffffff;
-            --container-width: 950px; /* Maximum width for information density */
+            --color-bg: #0d1117;         /* GitHub Dark Background */
+            --color-text: #e6edf3;       /* Light Gray Text */
+            --color-accent: #2c9c7e;     /* Emerald/Neon Green Accent */
+            --color-dim: #8b949e;        /* Comment/Dim Text */
+            --color-border: #30363d;     /* Dark Border Lines */
+            --container-width: 1100px;
+            --section-padding: 30px;
         }
 
         * { 
@@ -24,256 +27,242 @@
             margin: 0; 
             padding: 0; 
             outline: none; 
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transition: color 0.2s, background-color 0.2s;
+            font-smooth: always;
         }
 
         body {
-            background-color: #fcfcfc;
-            font-family: 'Crimson Pro', serif;
+            background-color: var(--color-bg);
+            font-family: 'IBM Plex Mono', monospace; /* Strong code aesthetic */
             color: var(--color-text);
-            line-height: 1.7; 
-            font-size: 12pt;
+            line-height: 1.6;
+            font-size: 10pt; /* Smaller font for dense, code-like appearance */
+            min-height: 100vh;
         }
 
         /* --- 2. LAYOUT UTILITIES --- */
         .container {
             max-width: var(--container-width);
-            margin: 3.5rem auto;
-            padding: 3.5rem 4rem;
-            background: var(--color-background);
-            border: 1px solid #eeeeee;
+            margin: 3rem auto;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            overflow: hidden;
         }
 
-        /* --- 3. TYPOGRAPHY & HEADERS --- */
-        
-        h1, h2, h3 { 
-            font-family: 'Karla', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            line-height: 1.2;
-            color: var(--color-primary); 
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr; /* Asymmetric layout */
+            min-height: 100%;
         }
         
-        /* Section Titles: Prominent and well-separated */
-        h2.section-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--color-line); 
-            letter-spacing: 0.2em;
-        }
-
-        p { 
-            color: var(--color-dim); 
-            margin-bottom: 1.2rem; 
-            font-size: 12pt;
-        }
-        
-        /* --- 4. HEADER SECTION (Introduction) --- */
+        /* --- 3. HEADER (Top Bar) --- */
         .profile-header {
-            text-align: left;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--color-primary); 
+            grid-column: 1 / -1; /* Full width */
+            padding: 20px var(--section-padding);
+            background: rgba(48, 54, 61, 0.4); /* Slightly lighter bar */
+            border-bottom: 2px solid var(--color-accent);
         }
 
         .main-name {
-            font-size: 3.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--color-text);
-            text-transform: none;
-            letter-spacing: -0.05em;
-            line-height: 1;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
         }
 
         .role-title {
-            font-family: 'Karla', sans-serif;
-            font-weight: 500;
-            font-size: 1.2rem;
-            color: var(--color-primary);
-            margin: 0.5rem 0 1rem 0;
-            display: block;
-            letter-spacing: 0.1em;
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: 15px;
         }
-
+        
         .contact-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
-            font-size: 10.5pt;
-            font-family: 'Karla', sans-serif;
+            gap: 0.5rem 2rem;
+            font-size: 0.9rem;
             color: var(--color-dim);
-            margin-top: 1rem;
         }
         .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
             color: var(--color-dim);
             text-decoration: none;
+            transition: color 0.2s;
         }
-        .contact-link:hover { color: var(--color-primary); }
+        .contact-link:hover { color: var(--color-accent); }
+        .contact-link i { width: 14px; height: 14px; color: var(--color-accent); }
 
-        /* --- 5. DETAILED TECHNOLOGY GRID --- */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns for density */
-            gap: 1.5rem 3rem;
-            margin-top: 1.5rem;
+        /* --- 4. SIDEBAR (Left Column: Protocol Stack & Info) --- */
+        .sidebar {
+            padding: var(--section-padding) 20px;
+            background: #161b22; /* Slightly darker code block */
+            border-right: 1px solid var(--color-border);
         }
 
-        .tech-category h3 {
-            font-size: 10.5pt;
+        .sidebar h2 {
+            font-size: 0.9rem;
             font-weight: 700;
-            color: var(--color-text);
-            text-transform: capitalize;
-            letter-spacing: 0.05em;
-            margin-bottom: 8px;
+            color: var(--color-dim);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
             padding-bottom: 3px;
-            border-bottom: 1px dotted #e0e0e0;
+            border-bottom: 1px solid var(--color-border);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
         }
-
-        .tech-list {
+        
+        .code-block-list {
             list-style: none;
             padding-left: 0;
-            font-size: 11pt;
-            font-family: 'Crimson Pro', serif;
+            font-size: 0.9rem;
         }
-
-        .tech-list li {
+        .code-block-list li {
             position: relative;
             padding-left: 15px;
-            line-height: 1.5;
-            color: var(--color-dim);
-        }
-        .tech-list li strong {
+            line-height: 1.8;
             color: var(--color-text);
-            font-weight: 600;
         }
-        .tech-list li::before {
-            content: '—';
+        .code-block-list li strong {
+            color: var(--color-accent);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: rgba(44, 156, 126, 0.3);
+        }
+        .code-block-list li::before {
+            content: '$'; /* Command prompt aesthetic */
             position: absolute;
             left: 0;
-            color: var(--color-line);
+            color: var(--color-dim);
+            font-weight: 900;
         }
         
-        /* --- 6. PROJECT ENTRY STYLING --- */
-        
-        .project-entry {
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px dashed #eee;
-        }
-        .project-entry:last-of-type {
-            border-bottom: none;
+        /* --- 5. MAIN CONTENT (Right Column: Project Logs & Education) --- */
+        .main-content {
+            padding: var(--section-padding);
         }
 
+        .main-content h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-top: 2rem; 
+            margin-bottom: 1rem;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-border);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .main-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Project Log Style */
+        .project-log {
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--color-accent);
+            padding-left: 15px;
+            position: relative;
+        }
+
+        /* Creative Pseudo-element to emulate a Git commit hash */
+        .project-log::before {
+            content: 'git commit -m "' attr(data-log) '"';
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            font-size: 0.8rem;
+            color: var(--color-dim);
+            background: var(--color-bg);
+            padding: 0 5px;
+        }
+        
         .project-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
         .project-title { 
-            font-family: 'Karla', sans-serif;
-            font-size: 11.5pt;
+            font-size: 1rem;
             font-weight: 700; 
-            color: var(--color-primary); 
+            color: var(--color-text); 
             text-transform: none;
-            letter-spacing: 0;
         }
         .project-tech { 
-            font-family: 'Karla', sans-serif;
-            font-size: 10pt;
-            color: var(--color-dim);
-            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--color-accent);
             font-style: italic;
         }
-
-        .project-description {
-            margin-top: 0.5rem;
-            margin-bottom: 10px;
-        }
-
+        
         .impact-list { 
-            list-style-type: none;
+            list-style-type: none; /* Removing default bullets */
             padding-left: 0; 
-            font-size: 11pt;
+            font-size: 0.95rem;
             color: var(--color-text);
+            margin-top: 5px;
         }
         .impact-list li {
             position: relative;
-            padding-left: 15px;
-            margin-bottom: 5px;
-            line-height: 1.6;
+            padding-left: 20px;
+            margin-bottom: 4px;
+            line-height: 1.5;
         }
         .impact-list li strong {
-            color: var(--color-primary);
+            color: var(--color-accent);
         }
+        
+        /* Creative Pseudo-element for enhanced bullet points */
         .impact-list li::before {
-            content: '•'; /* Simple dot bullet */
+            content: '// '; /* Code comment aesthetic */
             position: absolute;
             left: 0;
-            color: var(--color-line);
-            font-weight: 900;
+            color: var(--color-dim);
         }
 
-        /* --- 7. ACADEMIC & AWARDS --- */
-        .academic-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
+        /* Academic Styling (Console Output Aesthetic) */
         .academic-entry {
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--color-border);
         }
         .academic-entry h3 {
-            font-size: 11pt;
-            font-weight: 700;
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--color-text);
             text-transform: none;
             letter-spacing: 0;
         }
         .academic-meta {
-            font-family: 'Karla', sans-serif;
-            font-size: 10pt;
+            font-size: 0.85rem;
             color: var(--color-dim);
             margin-top: 3px;
         }
-        .achievement-list-small {
-            list-style: none;
-            padding-left: 0;
-            font-family: 'Karla', sans-serif;
-            font-size: 10.5pt;
-        }
-        .achievement-list-small li {
-            padding: 3px 0;
-            line-height: 1.5;
-            color: var(--color-dim);
-        }
 
-        /* --- 8. FOOTER --- */
+        /* --- 6. FOOTER --- */
         footer {
-            margin-top: 4rem;
-            padding: 1.5rem 0;
+            grid-column: 1 / -1; 
+            padding: 15px;
             text-align: center;
-            font-size: 9pt;
-            color: var(--color-line);
-            border-top: 1px solid var(--color-line);
-            font-family: 'Karla', sans-serif;
+            font-size: 0.8rem;
+            color: var(--color-dim);
+            background: #161b22;
+            border-top: 1px solid var(--color-border);
         }
 
-        /* --- 9. MOBILE OPTIMIZATIONS --- */
-        @media (max-width: 767px) {
-            .container { padding: 1.5rem 1rem; margin: 1rem auto; }
-            .main-name { font-size: 2.5rem; }
-            .role-title { font-size: 1.1rem; }
-            .contact-row { flex-direction: column; gap: 0.3rem; }
-            .tech-grid, .academic-section { grid-template-columns: 1fr; gap: 1.5rem; }
+        /* --- 7. MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 768px) {
+            .container { margin: 0; border-radius: 0; }
+            .profile-header { padding: 1.5rem; }
+            .main-content-grid {
+                grid-template-columns: 1fr; /* Stack columns on mobile */
+            }
+            .sidebar { padding: 1.5rem; border-right: none; border-bottom: 1px solid var(--color-border); }
+            .main-content { padding: 1.5rem; }
+            .contact-row { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -281,152 +270,131 @@
 
     <div class="container">
         
-        <div class="bio-wrapper">
+        <header class="profile-header">
+            <h1 class="main-name">LIKITH NAIDU</h1>
+            <span class="role-title">// AI_ENGINEER & FULL_STACK_DEV</span>
             
-            <header class="profile-header">
-                <h1 class="main-name">LIKITH NAIDU</h1>
-                <span class="role-title">AI Engineer & Full-Stack Developer</span>
-                
-                <p style="font-style: italic; color: var(--color-text); margin-bottom: 0;">
-                    A Protocol Specialist focused on building scalable, high-performance systems. Dedicated to pioneering solutions across Machine Learning, Data Architecture, and robust Full-Stack environments. Creator of the "Prometheus" Protocol.
-                </p>
+            <p style="font-size: 0.9rem; color: var(--color-dim); margin-bottom: 10px;">
+                > Specialist in building **scalable, high-performance systems** across ML, Data Architecture, and Full-Stack environments. System Creator: Prometheus.
+            </p>
 
-                <div class="contact-row">
-                    <span>likith.naidu@icloud.com</span>
-                    <span>(91) 94401 13763</span>
-                    <a href="https://linkedin.com/in/likhith-naidu-anumakonda-33a347327" target="_blank" class="contact-link">LinkedIn Profile</a>
-                    <a href="https://github.com/LIKITH-3012-MAC" target="_blank" class="contact-link">GitHub Repository</a>
-                </div>
-            </header>
+            <div class="contact-row">
+                <a href="mailto:likith.naidu@icloud.com" class="contact-link"><i data-lucide="mail"></i> likith.naidu@icloud.com</a>
+                <span class="contact-link"><i data-lucide="phone"></i> (91) 94401 13763</span>
+                <a href="https://linkedin.com/in/likhith-naidu-anumakonda-33a347327" target="_blank" class="contact-link"><i data-lucide="linkedin"></i> /likith-naidu</a>
+                <a href="https://github.com/LIKITH-3012-MAC" target="_blank" class="contact-link"><i data-lucide="github"></i> /LIKITH-3012-MAC</a>
+            </div>
+        </header>
 
-            <h2 class="section-title">Technical Expertise & Protocol Stack</h2>
-            <div class="tech-grid">
+        <div class="main-content-grid">
+            
+            <aside class="sidebar">
                 
-                <div class="tech-category">
-                    <h3>Core Languages & ML</h3>
-                    <ul class="tech-list">
-                        <li>**Python (95% Proficiency):** Data Science, Automation, Multi-threading.</li>
-                        <li>**Java SE:** Advanced OOP, Swing GUI development, JDBC integration.</li>
-                        <li>**ML/AI Frameworks:** Scikit-learn, Advanced Regression/Classification Models.</li>
-                        <li>**Web/Scripting:** JavaScript (ES6+), HTML5, CSS3.</li>
+                <div class="sidebar-section">
+                    <h2>_PROTOCOL_STACK_OVERVIEW</h2>
+                    <ul class="code-block-list">
+                        <li>**Python:** Data Science (Pandas), ML, Automation, Multi-threading.</li>
+                        <li>**Java SE:** Advanced OOP, SOLID Principles, Swing GUI.</li>
+                        <li>**Front-end:** **React.js / Next.js**, ES6+ JavaScript.</li>
+                        <li>**Databases:** **MongoDB** (Certified, NoSQL), MySQL, PostgreSQL.</li>
+                        <li>**ML/AI:** Scikit-learn, Deep Learning Concepts, Model Deployment.</li>
+                        <li>**Architecture:** RESTful API, ETL Design, Microservices (Concept).</li>
+                        <li>**DevOps/Ops:** Git, Docker, CI/CD Fundamentals, Linux Shell.</li>
                     </ul>
                 </div>
-
-                <div class="tech-category">
-                    <h3>Data Management & Backend</h3>
-                    <ul class="tech-list">
-                        <li>**Databases:** **MongoDB** (Certified), MySQL, PostgreSQL (Fundamentals).</li>
-                        <li>**Backend:** Node.js (Express), Fundamentals of Python Flask/Django.</li>
-                        <li>**Architecture:** RESTful API Design, Microservices Concepts, ETL Pipelines.</li>
-                        <li>**Cloud/DevOps:** Docker basics, CI/CD methodology, AWS/Azure (Exposure).</li>
-                    </ul>
-                </div>
-
-                <div class="tech-category">
-                    <h3>Front-end & Deployment</h3>
-                    <ul class="tech-list">
-                        <li>**Modern Frameworks:** **React.js / Next.js** (Functional Components, Hooks).</li>
-                        <li>**Styling:** CSS Modules, Styled-Components, Adaptive/Responsive Design.</li>
-                        <li>**Version Control:** Git, GitHub (Advanced branching and merging).</li>
-                        <li>**Utilities:** Unix/Linux Shell, Data Visualization (Matplotlib, Seaborn).</li>
-                    </ul>
-                </div>
-
-            </div>
-            
-            <h2 class="section-title">Project Protocols: System Analysis</h2>
-            
-            <div class="project-entry">
-                <div class="project-header">
-                    <h3 class="project-title">PROMETHEUS TOOL: High-Speed Automation Engine</h3>
-                    <span class="project-tech">Python // Pandas // Scikit-learn // ETL</span>
-                </div>
-                <p class="project-description">
-                    *The core module for data processing and automated classification, designed for operational efficiency.*
-                </p>
-                <ul class="impact-list">
-                    <li>Achieved **88.5% Verified Accuracy** on classification tasks using optimized ensemble ML models.</li>
-                    <li>Engineered a custom **ETL pipeline** that resulted in a **95% reduction** in time required for data ingestion and transformation.</li>
-                    <li>Utilized advanced **Pandas** techniques for efficient, in-memory data manipulation, minimizing I/O bottlenecks.</li>
-                </ul>
-            </div>
-
-            <div class="project-entry">
-                <div class="project-header">
-                    <h3 class="project-title">SIH HACKATHON '25: AI Dynamic Path Generator</h3>
-                    <span class="project-tech">React/Next.JS // Firebase // Team Leadership</span>
-                </div>
-                <p class="project-description">
-                    *An award-winning solution focused on real-time optimization and user-centric design principles.*
-                </p>
-                <ul class="impact-list">
-                    <li>Led a 5-member team, managing **Agile sprints** and version control to deliver the solution on a tight 48-hour schedule.</li>
-                    <li>Implemented **serverless data fetching** via Firebase and Redux-like state management for real-time responsiveness.</li>
-                    <li>Secured an award for **Best Concept and UI Design**, demonstrating strong technical and aesthetic synergy.</li>
-                </ul>
-            </div>
-            
-            <div class="project-entry">
-                <div class="project-header">
-                    <h3 class="project-title">JAVA REVIEW ENGINE & ASYNCHRONOUS UTILITY</h3>
-                    <span class="project-tech">Java SE // SQL // Python // Multi-threading</span>
-                </div>
-                <p class="project-description">
-                    *Developing robust back-end logic and high-speed desktop components using foundational principles.*
-                </p>
-                <ul class="impact-list">
-                    <li>Designed the Java application based on **SOLID principles**, ensuring a highly maintainable and scalable codebase.</li>
-                    <li>Integrated the Python Utility with **non-blocking I/O operations** and multi-threading, boosting execution speed by **12%**.</li>
-                    <li>Employed **JDBC** for secure and robust communication with the underlying SQL database layer.</li>
-                </ul>
-            </div>
-            
-            <h2 class="section-title">Academic & Certification Logs</h2>
-            <div class="academic-section">
                 
-                <div>
-                    <div class="academic-entry">
-                        <h3>B.Tech CSE - Artificial Intelligence (Current)</h3>
-                        <div class="academic-meta">PBR VITS, Kavali | 2024 - 2028</div>
-                        <p style="margin-top: 5px; font-size: 11pt;">
-                            Core studies include **Neural Networks**, Advanced **OOP** methodologies, and practical Cloud Architecture deployment strategies.
-                        </p>
+                <div class="sidebar-section">
+                    <h2>_ACADEMIC_TARGETS</h2>
+                    <ul class="code-block-list">
+                        <li>**B.Tech CSE (AI):** PBR VITS (2024-2028) - Focus: Neural Nets, Cloud.</li>
+                        <li>**AI-ML Spec:** **IIT-Patna** Certified - Focus: Deep Learning, Lin. Algebra.</li>
+                        <li>**Intermediate MPC:** 88% Score.</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h2>_SYSTEM_LOG_ACHIEVEMENTS</h2>
+                    <ul class="code-block-list">
+                        <li>**CodeClash 2025:** Winner (1st Place) - *Status: SUCCESS*.</li>
+                        <li>**Technova2K25:** Best Concept Award - *Status: VERIFIED*.</li>
+                        <li>**MongoDB University:** Certified Developer - *Status: PASS*.</li>
+                        <li>**Interest_Modules:** Quantum Computing, Robotics, Piano.</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                
+                <section>
+                    <h2>MODULE_PROJECT_LOGS (RUNTIME ANALYSIS)</h2>
+                    
+                    <div class="project-log" data-log="V1.0_PROMETHEUS_INIT">
+                        <div class="project-header">
+                            <h3 class="project-title">MODULE 01: PROMETHEUS TOOL (Automation Engine)</h3>
+                            <span class="project-tech">PYTHON // SCIKIT // ETL</span>
+                        </div>
+                        <ul class="impact-list">
+                            <li>// **88.5% Accuracy** achieved on internal classification tasks via optimized ensemble models.</li>
+                            <li>// Engineered proprietary **ETL pipeline** leading to **95% reduction** in data preprocessing time.</li>
+                            <li>// Utilized advanced **Pandas** techniques for efficient, low-memory data manipulation.</li>
+                        </ul>
                     </div>
 
-                    <div class="academic-entry">
-                        <h3>Advanced AI-ML Specialization (Certified)</h3>
-                        <div class="academic-meta">IIT-Patna I-HUB VISHLESHAN (External Certification)</div>
-                        <p style="margin-top: 5px; font-size: 11pt;">
-                            Intensive training in **Deep Learning**, model deployment best practices, and applied **Linear Algebra** in computational science.
-                        </p>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="academic-entry">
-                        <h3>Key Achievements & Recognitions</h3>
-                        <ul class="achievement-list-small">
-                            <li>**Winner (1st Place):** CodeClash 2025 Competition</li>
-                            <li>**Best Concept Award:** Technova2K25 Innovation Summit</li>
-                            <li>**Certified Developer:** MongoDB University Certification</li>
-                            <li>**High Score:** Intermediate (MPC) - 88%</li>
-                            <li>**Core Focus:** Quantum Mechanics & Robotics Research</li>
+                    <div class="project-log" data-log="V2.1_SIH_HACKATHON_FINISH">
+                        <div class="project-header">
+                            <h3 class="project-title">MODULE 02: AI DYNAMIC PATH GENERATOR (Hackathon)</h3>
+                            <span class="project-tech">REACT/NEXT.JS // FIREBASE // TEAM LEAD</span>
+                        </div>
+                        <ul class="impact-list">
+                            <li>// **Team Lead (5 Members):** Managed workflow using **Agile methodology** and strict Git branching.</li>
+                            <li>// Implemented **serverless backend (Firebase)** for real-time data fetching and state persistence.</li>
+                            <li>// Project won **Best Concept Award**, validating design and functional goals.</li>
                         </ul>
                     </div>
                     
-                    <div class="academic-entry" style="margin-top: 3rem;">
-                        <h3>Personal Development</h3>
-                        <p style="margin-top: 5px; font-size: 11pt; color: var(--color-dim);">
-                            Committed to continuous learning in advanced topics like **Quantum Computing Fundamentals** and **System Automation Design**. Proficient in piano performance and composition.
-                        </p>
+                    <div class="project-log" data-log="V3.0_JAVA_UTILITY_OPTIMIZATION">
+                        <div class="project-header">
+                            <h3 class="project-title">MODULE 03: JAVA REVIEW ENGINE & ASYNCHRONOUS UTILITY</h3>
+                            <span class="project-tech">JAVA SE // SQL // MULTI-THREADING</span>
+                        </div>
+                        <ul class="impact-list">
+                            <li>// Designed Java application adhering strictly to **SOLID principles** for maximum maintainability.</li>
+                            <li>// Achieved **12% execution speed increase** in Python utility via **non-blocking I/O** and thread management.</li>
+                            <li>// **Robust Data Layer:** Utilized **JDBC** for secure, transactional SQL database connectivity.</li>
+                        </ul>
                     </div>
-                </div>
-            </div>
+                </section>
+                
+                <section>
+                    <h2>ACADEMIC_LOGS (MODULE DEPENDENCIES)</h2>
+                    
+                    <div class="academic-entry">
+                        <h3>B.Tech CSE - Artificial Intelligence</h3>
+                        <div class="academic-meta">PBR VITS, Kavali | **ENTRY_YEAR:** 2024 | **STATUS:** RUNNING</div>
+                    </div>
 
-            <footer>
-                LIKITH NAIDU // PROFILE PROTOCOL V6.0 // SYSTEM DEPLOYED 
-            </footer>
+                    <div class="academic-entry">
+                        <h3>Advanced AI-ML Specialization (IIT-Patna)</h3>
+                        <div class="academic-meta">IIT-PATNA I-HUB VISHLESHAN | **CERT_ID:** H-A-1138 | **STATUS:** COMPLETE</div>
+                    </div>
+
+                    <div class="academic-entry">
+                        <h3>INTERMEDIATE (MPC)</h3>
+                        <div class="academic-meta">Narayana Junior College | **SCORE:** 88% | **STATUS:** COMPLETE</div>
+                    </div>
+                </section>
+            </main>
+            
         </div>
+        
+        <footer>
+            > LIKITH NAIDU // PROFILE PROTOCOL V8.0 // END_OF_SESSION (C) 2025
+        </footer>
     </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
