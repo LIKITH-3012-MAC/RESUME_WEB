@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIKITH NAIDU | Creative Resume</title>
+    <title>Likith Naidu | Creative Resume</title>
+    <meta name="description" content="Digital Resume of Likith Naidu Anumakonda - AI Architect & Full Stack Engineer.">
     <link rel="icon" type="image/png" href="https://i.ibb.co/m5GYjVY8/Gemini-Generated-Image-7rq0ul7rq0ul7rq0-2.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,10 +20,9 @@
             --text-main: #111111;
             --text-muted: #555555;
             --accent: #2563eb; /* Vivid Blue */
-            --accent-soft: #dbeafe;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --border: rgba(0, 0, 0, 0.06);
-            --shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            --card-bg: rgba(255, 255, 255, 0.90);
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
             
             --font-display: 'Syne', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -30,7 +30,7 @@
         }
 
         /* --- GLOBAL RESET --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; }
         
         body {
             background-color: var(--bg-color);
@@ -40,8 +40,7 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center; /* Center the page vertically/horizontally */
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         /* --- 1. CREATIVE BACKGROUND (MESH + GRAIN) --- */
@@ -55,7 +54,7 @@
         
         .bg-grain {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            opacity: 0.4;
+            opacity: 0.35;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
             pointer-events: none;
         }
@@ -71,10 +70,10 @@
             width: 100%;
             max-width: 1000px;
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.4);
-            border-radius: 20px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 6px;
             padding: 4rem;
             box-shadow: var(--shadow);
             position: relative;
@@ -90,7 +89,7 @@
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 2rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             border-bottom: 2px solid var(--text-main);
             padding-bottom: 2rem;
         }
@@ -100,9 +99,9 @@
             font-size: 4.5rem;
             font-weight: 800;
             line-height: 0.9;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.03em;
             color: var(--text-main);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .tagline {
@@ -110,14 +109,14 @@
             font-size: 1.1rem;
             color: var(--accent);
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.05em;
         }
 
         .contact-stack {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             text-align: right;
             font-family: var(--font-mono);
             font-size: 0.85rem;
@@ -132,44 +131,47 @@
             justify-content: flex-end;
             gap: 8px;
         }
-        .contact-link:hover { color: var(--accent); transform: translateX(-5px); }
+        .contact-link:hover { color: var(--accent); transform: translateX(-3px); }
 
         /* --- 4. CONTENT GRID --- */
         .content-grid {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 4rem;
         }
 
         /* --- 5. SIDEBAR STYLES --- */
         .section-label {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--text-main);
         }
         
-        .skill-box { margin-bottom: 2.5rem; }
+        .skill-box { margin-bottom: 3rem; }
         
         .skill-pill {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-family: var(--font-mono);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
         }
         
         .bar-container {
             width: 100%;
-            height: 6px;
-            background: rgba(0,0,0,0.05);
+            height: 4px;
+            background: rgba(0,0,0,0.06);
             border-radius: 99px;
             overflow: hidden;
+            margin-bottom: 1.2rem;
         }
         .bar-fill {
             height: 100%;
@@ -180,124 +182,99 @@
 
         .award-item {
             padding: 12px;
-            background: white;
+            background: #fff;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
             margin-bottom: 10px;
             transition: 0.2s;
         }
         .award-item:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .award-title { font-weight: 700; font-size: 0.95rem; display: block; }
-        .award-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .award-title { font-weight: 700; font-size: 0.9rem; display: block; font-family: var(--font-body); }
+        .award-desc { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
 
         /* --- 6. MAIN COLUMN STYLES --- */
         .timeline-entry {
             position: relative;
-            padding-left: 2rem;
-            margin-bottom: 3rem;
-            border-left: 1px solid rgba(0,0,0,0.1);
+            padding-left: 1.5rem;
+            margin-bottom: 2.5rem;
+            border-left: 2px solid rgba(0,0,0,0.06);
         }
         .timeline-entry::before {
-            content: '';
-            position: absolute;
-            left: -5px; top: 0;
-            width: 9px; height: 9px;
-            background: var(--accent);
-            border-radius: 50%;
+            content: ''; position: absolute; left: -5px; top: 6px;
+            width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
         }
 
         .entry-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 0.4rem;
         }
         
-        .entry-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; }
-        .entry-time { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); font-weight: 700; }
-        .entry-sub { font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem; font-style: italic; }
+        .entry-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+        .entry-time { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); font-weight: 700; }
+        .entry-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.8rem; font-style: italic; }
         
         .project-grid-view {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
         }
 
         .creative-card {
-            background: white;
+            background: #fff;
             padding: 1.5rem;
-            border-radius: 12px;
+            border-radius: 8px;
             border: 1px solid var(--border);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            overflow: hidden;
         }
         
         .creative-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
             border-color: var(--accent);
         }
 
         .card-tag {
-            font-size: 0.65rem;
-            font-family: var(--font-mono);
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 0.8rem;
-            display: block;
+            font-size: 0.65rem; font-family: var(--font-mono); font-weight: 700;
+            color: var(--accent); letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 0.8rem; display: block;
         }
+        
+        .card-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .card-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+        .card-list { padding-left: 15px; font-size: 0.8rem; color: #444; }
 
-        /* --- 7. FLOATING ACTION BUTTON (CONSTANT) --- */
+        /* --- 7. FLOATING ACTION BUTTON --- */
         .fab-wrapper {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 999;
-            display: flex;
-            gap: 10px;
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+            display: flex; gap: 10px;
         }
         .fab-btn {
-            background: var(--text-main);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: var(--text-main); color: white; border: none;
+            padding: 12px 24px; border-radius: 50px;
+            font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s; display: flex; align-items: center; gap: 8px;
         }
-        .fab-btn:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
+        .fab-btn:hover { background: var(--accent); transform: translateY(-2px); }
         .fab-icon-only { padding: 12px; border-radius: 50%; }
 
         /* --- PRINT MEDIA QUERY --- */
         @media print {
-            body { background: white; padding: 0; }
+            body { background: white; padding: 0; display: block; }
             .bg-mesh, .bg-grain, .fab-wrapper { display: none; }
             .resume-sheet { 
                 box-shadow: none; border: none; width: 100%; max-width: 100%; 
-                transform: none; padding: 0; margin: 0;
+                transform: none; padding: 0; margin: 0; animation: none;
             }
             .content-grid { gap: 2rem; }
             .project-grid-view { grid-template-columns: 1fr 1fr; }
             a { text-decoration: none; color: black; }
+            .bar-fill { width: 100% !important; background: #ddd !important; -webkit-print-color-adjust: exact; }
         }
 
         @media (max-width: 800px) {
-            .resume-sheet { padding: 2rem; margin: 1rem; }
-            .header-grid { grid-template-columns: 1fr; text-align: center; gap: 1rem; }
-            .contact-stack { text-align: center; align-items: center; }
+            .resume-sheet { padding: 2rem; }
+            .header-grid { grid-template-columns: 1fr; text-align: left; gap: 1rem; }
+            .contact-stack { text-align: left; align-items: flex-start; }
             h1 { font-size: 3rem; }
             .content-grid { grid-template-columns: 1fr; gap: 3rem; }
             .project-grid-view { grid-template-columns: 1fr; }
@@ -315,16 +292,16 @@
             <div>
                 <h1>LIKITH NAIDU</h1>
                 <p class="tagline">AI Architect & Full Stack Engineer</p>
-                <p style="margin-top: 10px; font-size: 0.95rem; max-width: 500px; color: var(--text-muted); line-height: 1.6;">
+                <p style="margin-top: 15px; font-size: 0.95rem; max-width: 500px; color: var(--text-muted); line-height: 1.6;">
                     Building the bridge between <strong>Local LLMs</strong> and <strong>Spatial Web UI</strong>. 
-                    Specialist in Python Architecture, Java SE, and Data Optimization.
+                    Specialist in Python Architecture, Java SE, and Data Optimization. Architect of the Prometheus AI Protocol.
                 </p>
             </div>
             <div class="contact-stack">
-                <a href="#" class="contact-link">likith.naidu@icloud.com <i data-lucide="mail" size="14"></i></a>
-                <a href="#" class="contact-link">likith-portfolio.online <i data-lucide="globe" size="14"></i></a>
-                <a href="#" class="contact-link">github.com/LIKITH-3012-MAC <i data-lucide="github" size="14"></i></a>
-                <a href="#" class="contact-link">linkedin.com/in/likhith-naidu <i data-lucide="linkedin" size="14"></i></a>
+                <a href="mailto:likith.naidu@icloud.com" class="contact-link">likith.naidu@icloud.com <i data-lucide="mail" size="14"></i></a>
+                <a href="https://likith-portfolio.online" target="_blank" class="contact-link">likith-portfolio.online <i data-lucide="globe" size="14"></i></a>
+                <a href="https://github.com/LIKITH-3012-MAC" target="_blank" class="contact-link">github.com/LIKITH-3012-MAC <i data-lucide="github" size="14"></i></a>
+                <a href="https://linkedin.com/in/likhith-naidu-anumakonda-33a347327" target="_blank" class="contact-link">linkedin.com/in/likhith-naidu <i data-lucide="linkedin" size="14"></i></a>
                 <span class="contact-link">Kavali, Andhra Pradesh <i data-lucide="map-pin" size="14"></i></span>
             </div>
         </header>
@@ -333,35 +310,26 @@
             
             <aside>
                 <div class="skill-box">
-                    <div class="section-label"><i data-lucide="cpu"></i> CORE STACK</div>
+                    <div class="section-label"><i data-lucide="cpu" size="20"></i> CORE STACK</div>
                     
-                    <div class="skill-pill">
-                        <span>Python / Data</span>
-                        <span>98%</span>
-                    </div>
+                    <div class="skill-pill"><span>Python / Data</span><span>98%</span></div>
                     <div class="bar-container"><div class="bar-fill" style="width: 98%"></div></div>
                     
-                    <div class="skill-pill" style="margin-top: 15px;">
-                        <span>Java SE</span>
-                        <span>90%</span>
-                    </div>
+                    <div class="skill-pill"><span>Java SE</span><span>90%</span></div>
                     <div class="bar-container"><div class="bar-fill" style="width: 90%"></div></div>
 
-                    <div class="skill-pill" style="margin-top: 15px;">
-                        <span>SQL / MongoDB</span>
-                        <span>85%</span>
-                    </div>
+                    <div class="skill-pill"><span>SQL / MongoDB</span><span>85%</span></div>
                     <div class="bar-container"><div class="bar-fill" style="width: 85%"></div></div>
 
-                    <div class="skill-pill" style="margin-top: 15px;">
-                        <span>AI / ML (Ollama)</span>
-                        <span>82%</span>
-                    </div>
+                    <div class="skill-pill"><span>AI / ML (Ollama)</span><span>82%</span></div>
                     <div class="bar-container"><div class="bar-fill" style="width: 82%"></div></div>
+                    
+                    <div class="skill-pill"><span>React / Next.js</span><span>75%</span></div>
+                    <div class="bar-container"><div class="bar-fill" style="width: 75%"></div></div>
                 </div>
 
                 <div class="skill-box">
-                    <div class="section-label"><i data-lucide="award"></i> HONORS</div>
+                    <div class="section-label"><i data-lucide="award" size="20"></i> HONORS</div>
                     <div class="award-item">
                         <span class="award-title">🏆 1st Prize: CodeClash 2025</span>
                         <span class="award-desc">Algorithmic Excellence</span>
@@ -377,11 +345,11 @@
                 </div>
 
                 <div class="skill-box">
-                    <div class="section-label"><i data-lucide="zap"></i> INTERESTS</div>
+                    <div class="section-label"><i data-lucide="zap" size="20"></i> INTERESTS</div>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Quantum Computing</span>
-                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Classical Piano</span>
-                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Robotics</span>
+                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.75rem; font-weight:600;">Quantum Computing</span>
+                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.75rem; font-weight:600;">Classical Piano</span>
+                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.75rem; font-weight:600;">Robotics</span>
                     </div>
                 </div>
             </aside>
@@ -471,6 +439,10 @@
                 </section>
             </main>
         </div>
+        
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); text-align: center; color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono);">
+            LIKITH NAIDU RESUME WEB // AUTOMATED GENERATION // 2026
+        </footer>
     </div>
 
     <div class="fab-wrapper">
