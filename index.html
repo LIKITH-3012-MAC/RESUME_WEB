@@ -3,474 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIKITH NAIDU RESUME WEB</title>
+    <title>LIKITH NAIDU | Creative Resume</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/m5GYjVY8/Gemini-Generated-Image-7rq0ul7rq0ul7rq0-2.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* --- 1. CORE VARIABLES & RESET (CLASSIC) --- */
+        /* --- CORE VARIABLES --- */
         :root {
-            --primary-text: #1a1a1a;    /* Near-Black for main text */
-            --secondary-text: #4a4a4a;  /* Dark Gray for details */
-            --accent-color: #0077b6;    /* Professional Deep Blue */
-            --background-light: #ffffff;
-            --background-section: #f4f4f4;
-            --border-classic: 1px solid #e0e0e0;
+            --bg-color: #f3f3f3;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --accent: #2563eb; /* Vivid Blue */
+            --accent-soft: #dbeafe;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border: rgba(0, 0, 0, 0.06);
+            --shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
             
-            --container-width: 1000px;
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', monospace;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-
+        /* --- GLOBAL RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background-color: var(--background-light); /* Clean white background */
-            font-family: 'Lato', sans-serif;
-            color: var(--primary-text);
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center the page vertically/horizontally */
+            padding: 40px 20px;
         }
 
-        /* --- 2. LAYOUT UTILITIES --- */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 2.5rem 2rem;
+        /* --- 1. CREATIVE BACKGROUND (MESH + GRAIN) --- */
+        .bg-mesh {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+            background: radial-gradient(circle at 0% 0%, #e0e7ff 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, #f0fdf4 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, #fff 0%, #f3f4f6 100%);
+            animation: gradientShift 20s ease infinite;
+        }
+        
+        .bg-grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+            pointer-events: none;
         }
 
-        .grid-layout {
+        @keyframes gradientShift {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- 2. MAIN CONTAINER (THE FLOATING PAPER) --- */
+        .resume-sheet {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: floatUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes floatUp { to { transform: translateY(0); opacity: 1; } }
+
+        /* --- 3. HEADER SECTION --- */
+        .header-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 2rem;
         }
 
-        /* Desktop Grid Override: Classic two-column layout */
-        @media (min-width: 968px) {
-            .grid-layout {
-                grid-template-columns: 280px 1fr; /* Slimmer, classic sidebar */
-            }
-        }
-
-        /* --- 3. UI COMPONENTS (PROFESSIONAL PANELS) --- */
-        .classic-panel {
-            background: var(--background-section);
-            border: var(--border-classic);
-            padding: 2rem;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .classic-panel:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle lift on hover */
-        }
-
-        /* --- 4. TYPOGRAPHY (ELEGANT & CLEAR) --- */
-        h1, h2, h3 { 
-            font-family: 'Playfair Display', serif; 
-            text-transform: capitalize; 
-            letter-spacing: 0.5px;
-            color: var(--primary-text);
-        }
-        
         h1 {
-            font-size: 3rem; 
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 0.2rem;
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: right;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
         }
         
-        h2.section-title {
-            font-size: 1.6rem;
+        .contact-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        .contact-link:hover { color: var(--accent); transform: translateX(-5px); }
+
+        /* --- 4. CONTENT GRID --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+        }
+
+        /* --- 5. SIDEBAR STYLES --- */
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--accent-color);
             margin-bottom: 1.5rem;
-            padding-bottom: 5px;
-            border-bottom: 2px solid var(--accent-color); /* Underline accent */
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        p { 
-            line-height: 1.7; 
-            color: var(--secondary-text); 
-            margin-bottom: 1rem; 
-        }
-
-        /* --- 5. HEADER SECTION (CLEAN & BOLD) --- */
-        .profile-header {
-            margin-bottom: 2.5rem;
-            padding: 2rem 0;
-            border-bottom: 3px double #e0e0e0;
-        }
-
-        .role-badge {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 3px;
-            font-family: 'Lato', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .skill-box { margin-bottom: 2.5rem; }
         
-        .role-badge + .role-badge {
-            margin-left: 10px;
-        }
-
-        .header-summary {
-            margin-top: 1.5rem;
-            font-style: italic;
-            color: var(--secondary-text);
-        }
-
-        .contact-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem 2rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--secondary-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .contact-link:hover { 
-            color: var(--accent-color); 
-            text-decoration: underline; 
-        }
-        .contact-link i { 
-            width: 16px; 
-            height: 16px; 
-            color: var(--accent-color); /* Icons use accent color */
-        }
-        .contact-link span i { color: var(--secondary-text); } /* For non-link contact span */
-
-
-        /* --- 6. SIDEBAR STYLES (CLEAN & STRUCTURED) --- */
-        .skill-group { margin-bottom: 2rem; }
-        
-        .skill-item { margin-bottom: 1rem; }
-        
-        .skill-meta {
+        .skill-pill {
             display: flex;
             justify-content: space-between;
-            font-family: 'Lato', sans-serif;
+            align-items: center;
+            margin-bottom: 10px;
+            font-family: var(--font-mono);
             font-size: 0.9rem;
-            margin-bottom: 5px;
-            color: var(--primary-text);
+            font-weight: 500;
         }
-
-        .progress-bar-bg {
+        
+        .bar-container {
             width: 100%;
-            height: 5px;
-            background: #e0e0e0;
-            border-radius: 2px;
+            height: 6px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 99px;
             overflow: hidden;
         }
-
-        .progress-bar-fill {
+        .bar-fill {
             height: 100%;
-            background: var(--accent-color);
-            width: var(--w); /* Uses CSS variable from HTML */
-            transition: width 1s ease-out; /* Smooth load for visual effect */
+            background: var(--text-main);
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        .badge-list { list-style: none; }
-        .badge-list li {
-            padding: 8px 0;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--secondary-text);
+        .award-item {
+            padding: 12px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: 0.2s;
         }
-        .badge-list li:not(:last-child) {
-             border-bottom: 1px dashed #cccccc; 
-        }
-        .badge-list li i { color: var(--accent-color); width: 16px; }
+        .award-item:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .award-title { font-weight: 700; font-size: 0.95rem; display: block; }
+        .award-desc { font-size: 0.8rem; color: var(--text-muted); }
 
-        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag {
-            background: var(--background-light);
-            padding: 5px 10px;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            border-radius: 3px;
-            transition: 0.3s;
-        }
-        .tag:hover { background: var(--accent-color); color: var(--background-light); }
-
-        /* --- 7. MAIN CONTENT STYLES --- */
-        
-        /* Education Cards */
-        .edu-card {
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
+        /* --- 6. MAIN COLUMN STYLES --- */
+        .timeline-entry {
             position: relative;
-            background: var(--background-light);
-            border-left: 4px solid var(--accent-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+            border-left: 1px solid rgba(0,0,0,0.1);
         }
-        .edu-year {
-            font-family: 'Lato', sans-serif;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 0.2rem;
-            letter-spacing: 0.5px;
-        }
-        .edu-title { 
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem; 
-            font-weight: 700; 
-            color: var(--primary-text); 
-            margin-bottom: 0.2rem;
-        }
-        .edu-inst { 
-            color: var(--secondary-text); 
-            font-size: 1rem; 
-            margin-bottom: 0.5rem; 
-            font-weight: 400;
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -5px; top: 0;
+            width: 9px; height: 9px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
-        /* Project Grid */
-        .projects-wrapper {
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+        
+        .entry-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; }
+        .entry-time { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); font-weight: 700; }
+        .entry-sub { font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem; font-style: italic; }
+        
+        .project-grid-view {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
 
-        .project-card {
-            background: var(--background-light);
-            border: var(--border-classic);
+        .creative-card {
+            background: white;
             padding: 1.5rem;
-            transition: 0.3s;
-        }
-        .project-card:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.15);
-        }
-        .project-card h3 { 
-            color: var(--primary-text); 
-            font-size: 1.2rem; 
-            font-weight: 700;
-            margin-bottom: 0.5rem; 
-        }
-        .tech-stack { 
-            font-size: 0.85rem; 
-            color: var(--accent-color); 
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: block; 
-            margin-bottom: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .project-list {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 10px;
+        .creative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent);
         }
-        .project-list li {
+
+        .card-tag {
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        /* --- 7. FLOATING ACTION BUTTON (CONSTANT) --- */
+        .fab-wrapper {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+        .fab-btn {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-weight: 700;
             font-size: 0.9rem;
-            color: var(--secondary-text);
-            margin-bottom: 5px;
-            position: relative;
-            padding-left: 15px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .project-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
+        .fab-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .fab-icon-only { padding: 12px; border-radius: 50%; }
+
+        /* --- PRINT MEDIA QUERY --- */
+        @media print {
+            body { background: white; padding: 0; }
+            .bg-mesh, .bg-grain, .fab-wrapper { display: none; }
+            .resume-sheet { 
+                box-shadow: none; border: none; width: 100%; max-width: 100%; 
+                transform: none; padding: 0; margin: 0;
+            }
+            .content-grid { gap: 2rem; }
+            .project-grid-view { grid-template-columns: 1fr 1fr; }
+            a { text-decoration: none; color: black; }
         }
 
-        /* --- 8. FOOTER --- */
-        footer {
-            margin-top: 4rem;
-            padding: 1.5rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--secondary-text);
-            border-top: 1px solid #e0e0e0;
-            background: var(--background-section);
-        }
-
-        /* --- 9. MOBILE OPTIMIZATIONS --- */
-        @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .classic-panel { padding: 1.5rem; }
-            .section-title { font-size: 1.4rem; }
-            h1 { font-size: 2.5rem; }
-            .contact-row { flex-direction: column; gap: 0.5rem; }
-            .profile-header { padding: 1rem 0; }
+        @media (max-width: 800px) {
+            .resume-sheet { padding: 2rem; margin: 1rem; }
+            .header-grid { grid-template-columns: 1fr; text-align: center; gap: 1rem; }
+            .contact-stack { text-align: center; align-items: center; }
+            h1 { font-size: 3rem; }
+            .content-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .project-grid-view { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="bg-mesh"></div>
+    <div class="bg-grain"></div>
+
+    <div class="resume-sheet">
         
-        <header class="profile-header">
+        <header class="header-grid">
             <div>
-                <h1 data-text="LIKITH NAIDU">LIKITH NAIDU</h1>
-                <div style="margin-top: 5px;">
-                    <span class="role-badge">AI ENGINEER</span>
-                    <span class="role-badge">FULL STACK DEV</span>
-                </div>
+                <h1>LIKITH NAIDU</h1>
+                <p class="tagline">AI Architect & Full Stack Engineer</p>
+                <p style="margin-top: 10px; font-size: 0.95rem; max-width: 500px; color: var(--text-muted); line-height: 1.6;">
+                    Building the bridge between <strong>Local LLMs</strong> and <strong>Spatial Web UI</strong>. 
+                    Specialist in Python Architecture, Java SE, and Data Optimization.
+                </p>
             </div>
-
-            <p class="header-summary" style="max-width: 800px;">
-                Specialist in Python, Java SE, and Advanced Data Architecture. Creator of the "Prometheus" Protocol. Currently pursuing B.Tech CSE (AI) with a focus on real-world application.
-            </p>
-
-            <div class="contact-row">
-                <a href="mailto:likith.naidu@icloud.com" class="contact-link"><i data-lucide="mail"></i> likith.naidu@icloud.com</a>
-                <a href="https://likith-portfolio.online" target="_blank" class="contact-link"><i data-lucide="globe"></i> likith-portfolio.online</a>
-                <a href="https://github.com/LIKITH-3012-MAC" target="_blank" class="contact-link"><i data-lucide="github"></i> github/LIKITH-MAC</a>
-                <a href="https://linkedin.com/in/likhith-naidu-anumakonda-33a347327" target="_blank" class="contact-link"><i data-lucide="linkedin"></i> linkedin/likith</a>
-                <span class="contact-link"><i data-lucide="phone"></i> +91 94401 13763</span>
+            <div class="contact-stack">
+                <a href="#" class="contact-link">likith.naidu@icloud.com <i data-lucide="mail" size="14"></i></a>
+                <a href="#" class="contact-link">likith-portfolio.online <i data-lucide="globe" size="14"></i></a>
+                <a href="#" class="contact-link">github.com/LIKITH-3012-MAC <i data-lucide="github" size="14"></i></a>
+                <a href="#" class="contact-link">linkedin.com/in/likhith-naidu <i data-lucide="linkedin" size="14"></i></a>
+                <span class="contact-link">Kavali, Andhra Pradesh <i data-lucide="map-pin" size="14"></i></span>
             </div>
         </header>
 
-        <div class="grid-layout">
+        <div class="content-grid">
             
             <aside>
-                <div class="classic-panel" style="margin-bottom: 2rem;">
-                    <h3 style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid #cccccc; padding-bottom: 8px; display: flex; align-items: center; gap: 10px;">
-                        <i data-lucide="cpu"></i> Core Competencies
-                    </h3>
+                <div class="skill-box">
+                    <div class="section-label"><i data-lucide="cpu"></i> CORE STACK</div>
+                    
+                    <div class="skill-pill">
+                        <span>Python / Data</span>
+                        <span>98%</span>
+                    </div>
+                    <div class="bar-container"><div class="bar-fill" style="width: 98%"></div></div>
+                    
+                    <div class="skill-pill" style="margin-top: 15px;">
+                        <span>Java SE</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="bar-container"><div class="bar-fill" style="width: 90%"></div></div>
 
-                    <div class="skill-group">
-                        <div class="skill-item">
-                            <div class="skill-meta"><span>Python (Data/ML)</span> <span>95%</span></div>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 95%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-meta"><span>Java SE (Swing)</span> <span>90%</span></div>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 90%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-meta"><span>SQL / MongoDB</span> <span>85%</span></div>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 85%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-meta"><span>AI / ML (Scikit)</span> <span>80%</span></div>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 80%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-meta"><span>React / Next.js</span> <span>75%</span></div>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="--w: 75%"></div></div>
-                        </div>
+                    <div class="skill-pill" style="margin-top: 15px;">
+                        <span>SQL / MongoDB</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="bar-container"><div class="bar-fill" style="width: 85%"></div></div>
+
+                    <div class="skill-pill" style="margin-top: 15px;">
+                        <span>AI / ML (Ollama)</span>
+                        <span>82%</span>
+                    </div>
+                    <div class="bar-container"><div class="bar-fill" style="width: 82%"></div></div>
+                </div>
+
+                <div class="skill-box">
+                    <div class="section-label"><i data-lucide="award"></i> HONORS</div>
+                    <div class="award-item">
+                        <span class="award-title">🏆 1st Prize: CodeClash 2025</span>
+                        <span class="award-desc">Algorithmic Excellence</span>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-title">⭐ Best Concept: Technova2K25</span>
+                        <span class="award-desc">Innovative System Design</span>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-title">📜 MongoDB Certified</span>
+                        <span class="award-desc">Data Modeling Associate</span>
                     </div>
                 </div>
 
-                <div class="classic-panel">
-                    <h3 style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid #cccccc; padding-bottom: 8px; display: flex; align-items: center; gap: 10px;">
-                        <i data-lucide="award"></i> Achievements
-                    </h3>
-                    <ul class="badge-list">
-                        <li><i data-lucide="trophy"></i> Winner (1st): **CodeClash 2025**</li>
-                        <li><i data-lucide="star"></i> Best Concept: **Technova2K25**</li>
-                        <li><i data-lucide="database"></i> **MongoDB** Certified Developer</li>
-                        <li><i data-lucide="check-circle"></i> IIT-Patna AI_ML Certificate</li>
-                    </ul>
-
-                    <h3 style="color: var(--accent-color); font-size: 1rem; margin: 2rem 0 1rem 0; border-bottom: 1px solid #cccccc; padding-bottom: 5px;">
-                        Interests
-                    </h3>
-                    <div class="tag-cloud">
-                        <span class="tag">Quantum Mechanics</span>
-                        <span class="tag">Automation</span>
-                        <span class="tag">Piano</span>
-                        <span class="tag">Robotics</span>
-                        <span class="tag">Data Analysis</span>
+                <div class="skill-box">
+                    <div class="section-label"><i data-lucide="zap"></i> INTERESTS</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Quantum Computing</span>
+                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Classical Piano</span>
+                        <span style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Robotics</span>
                     </div>
                 </div>
             </aside>
 
             <main>
-                
-                <section style="margin-bottom: 2.5rem;">
-                    <h2 class="section-title"><i data-lucide="graduation-cap"></i> Academic History</h2>
+                <section style="margin-bottom: 3rem;">
+                    <div class="section-label"><i data-lucide="graduation-cap"></i> EDUCATION</div>
                     
-                    <div class="edu-card">
-                        <div class="edu-year">2024 - 2028 (Anticipated)</div>
-                        <div class="edu-title">B.Tech CSE - Artificial Intelligence</div>
-                        <div class="edu-inst">PBR VITS, Kavali</div>
-                        <p style="font-size: 0.95rem; margin: 0; color: var(--secondary-text);">
-                            Concentration in Neural Networks, Object-Oriented Programming (OOP), and Cloud Architecture.
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">B.Tech CSE - Artificial Intelligence</span>
+                            <span class="entry-time">2024 - 2028</span>
+                        </div>
+                        <div class="entry-sub">PBR VITS, Kavali</div>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);">
+                            Specializing in Neural Networks, OOP, and Cloud Architecture. 
+                            Consistently applying theoretical ML concepts to practical software deployment.
                         </p>
                     </div>
 
-                    <div class="edu-card">
-                        <div class="edu-year">Certified</div>
-                        <div class="edu-title">Advanced AI-ML Specialization</div>
-                        <div class="edu-inst">IIT-Patna I-HUB VISHLESHAN</div>
-                        <p style="font-size: 0.95rem; margin: 0; color: var(--secondary-text);">
-                            Focus on Deep Learning, Model Deployment, and practical Linear Algebra application.
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Advanced AI-ML Specialization</span>
+                            <span class="entry-time">Certified</span>
+                        </div>
+                        <div class="entry-sub">IIT-Patna I-HUB VISHLESHAN</div>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);">
+                            Rigorous coursework in Deep Learning, Model Deployment, and Data Preprocessing.
                         </p>
-                    </div>
-
-                    <div class="edu-card">
-                        <div class="edu-year">Intermediate (MPC)</div>
-                        <div class="edu-title">Narayana Junior College</div>
-                        <div class="edu-inst">Score: 88% | JEE Mains: 70%</div>
                     </div>
                 </section>
 
                 <section>
-                    <h2 class="section-title" style="border-color: #cc0000; color: #cc0000;"><i data-lucide="code"></i> Key Projects</h2>
+                    <div class="section-label"><i data-lucide="folder-git-2"></i> PROJECTS</div>
                     
-                    <div class="projects-wrapper">
+                    <div class="project-grid-view">
                         
-                        <div class="project-card">
-                            <h3>PROMETHEUS TOOL</h3>
-                            <span class="tech-stack" style="color: #cc0000;">PYTHON // PANDAS // SCIKIT</span>
-                            <p style="font-size: 0.9rem;">Modular automation engine designed for large-scale data processing and predictive analytics.</p>
-                            <ul class="project-list">
-                                <li>Reduced ETL time by **95%** through optimized data pipelines.</li>
-                                <li>Achieved **88.5%** verified accuracy in predictive models.</li>
+                        <div class="creative-card">
+                            <span class="card-tag">Python // AI // Scikit</span>
+                            <h3 style="font-weight: 700; margin-bottom: 5px;">PROMETHEUS TOOL</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                Modular automation engine for data processing.
+                            </p>
+                            <ul style="font-size: 0.85rem; padding-left: 15px; color: #444;">
+                                <li>Reduced ETL time by <strong>95%</strong>.</li>
+                                <li><strong>88.5%</strong> verified model accuracy.</li>
                             </ul>
                         </div>
 
-                        <div class="project-card">
-                            <h3>SIH HACKATHON '25</h3>
-                            <span class="tech-stack" style="color: #cc0000;">REACT // NEXT.JS // FIREBASE</span>
-                            <p style="font-size: 0.9rem;">Team Lead (5 Members) for an AI Path Generator web application.</p>
-                            <ul class="project-list">
-                                <li>Implemented **real-time** data processing for dynamic path optimization.</li>
-                                <li>Recognized for **Award-winning UI Design** focused on user experience.</li>
+                        <div class="creative-card">
+                            <span class="card-tag">React // Next.js // Firebase</span>
+                            <h3 style="font-weight: 700; margin-bottom: 5px;">SIH HACKATHON '25</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                Team Lead for AI Path Generator App.
+                            </p>
+                            <ul style="font-size: 0.85rem; padding-left: 15px; color: #444;">
+                                <li>Real-time data processing.</li>
+                                <li>Award-winning UX/UI.</li>
                             </ul>
                         </div>
 
-                        <div class="project-card">
-                            <h3>DESKTOP UTILITY</h3>
-                            <span class="tech-stack" style="color: #cc0000;">PYTHON // TKINTER // MULTI-THREAD</span>
-                            <p style="font-size: 0.9rem;">High-performance asynchronous GUI application for local system management.</p>
-                            <ul class="project-list">
-                                <li>Enabled **12% faster** execution by utilizing multi-threading.</li>
-                                <li>Ensured **non-blocking I/O operations** for enhanced user responsiveness.</li>
+                        <div class="creative-card">
+                            <span class="card-tag">Python // Tkinter // Threading</span>
+                            <h3 style="font-weight: 700; margin-bottom: 5px;">DESKTOP UTILITY</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                Asynchronous local management GUI.
+                            </p>
+                            <ul style="font-size: 0.85rem; padding-left: 15px; color: #444;">
+                                <li><strong>12% faster</strong> execution.</li>
+                                <li>Non-blocking I/O operations.</li>
                             </ul>
                         </div>
 
-                        <div class="project-card">
-                            <h3>REVIEW ENGINE</h3>
-                            <span class="tech-stack" style="color: #cc0000;">JAVA SE // SQL // SWING</span>
-                            <p style="font-size: 0.9rem;">Enterprise-grade application built on **SOLID Principles** for review data management.</p>
-                            <ul class="project-list">
-                                <li>Designed a **scalable architecture** to handle high transaction volumes.</li>
-                                <li>Implemented robust database integration with secure SQL transactions.</li>
+                        <div class="creative-card">
+                            <span class="card-tag">Java SE // SQL // SOLID</span>
+                            <h3 style="font-weight: 700; margin-bottom: 5px;">REVIEW ENGINE</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                                Enterprise-grade review data system.
+                            </p>
+                            <ul style="font-size: 0.85rem; padding-left: 15px; color: #444;">
+                                <li>Scalable architecture.</li>
+                                <li>Secure SQL integration.</li>
                             </ul>
                         </div>
 
@@ -478,14 +471,38 @@
                 </section>
             </main>
         </div>
+    </div>
 
-        <footer>
-            LIKITH NAIDU // Professional CV // Designed for Clarity and Elegance
-        </footer>
+    <div class="fab-wrapper">
+        <button class="fab-btn" onclick="window.print()">
+            <i data-lucide="printer" size="18"></i> DOWNLOAD PDF
+        </button>
+        <button class="fab-btn fab-icon-only" style="background: white; color: black;" onclick="copyLink()">
+            <i data-lucide="share-2" size="18"></i>
+        </button>
     </div>
 
     <script>
+        // Init Icons
         lucide.createIcons();
+
+        // Copy Link
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Resume URL copied!");
+        }
+
+        // Animate Bars on Load
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.bar-fill');
+            bars.forEach(bar => {
+                const w = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = w;
+                }, 300);
+            });
+        });
     </script>
 </body>
 </html>
